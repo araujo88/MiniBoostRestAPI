@@ -14,7 +14,8 @@ void Server::session(tcp::socket socket) {
       res.result(http::status::not_found);
       res.body() = "Resource not found";
     }
-    res.prepare_payload();
+    if (res.body().length() != 0)
+      res.prepare_payload();
 
     http::write(socket, res);
   } catch (std::exception const &e) {

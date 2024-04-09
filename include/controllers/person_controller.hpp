@@ -23,5 +23,6 @@ public:
 
   void getPersons(Context &ctx);
   void createPerson(Context &ctx);
-  void getPersonsById(Context &ctx);
+  void getPersonById(Context &ctx);
+  void deletePersonById(Context &ctx);
 };

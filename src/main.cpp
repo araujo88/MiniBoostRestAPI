@@ -23,7 +23,12 @@ int main(void) {
 
     router->addRoute(http::verb::get, "/person/{id}",
                      [personController](auto &ctx) {
-                       personController->getPersonsById(ctx);
+                       personController->getPersonById(ctx);
+                     });
+
+    router->addRoute(http::verb::delete_, "/person/{id}",
+                     [personController](auto &ctx) {
+                       personController->deletePersonById(ctx);
                      });
 
     std::cout << "Server starting on port " << server.getPort() << std::endl;

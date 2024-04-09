@@ -13,3 +13,15 @@ std::optional<Person> PersonService::getPersonById(unsigned int id) {
   }
   return std::nullopt;
 }
+
+bool PersonService::deletePersonById(unsigned int id) {
+  for (auto it = persons.begin(); it != persons.end();) {
+    if (it->getId() == id) {
+      it = persons.erase(it);
+      return true;
+    } else {
+      ++it;
+    }
+  }
+  return false;
+}

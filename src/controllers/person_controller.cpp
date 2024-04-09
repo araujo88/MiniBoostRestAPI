@@ -29,14 +29,15 @@ void PersonController::createPerson(Context &ctx) {
     auto person = PersonSerializer::fromJson(json.as_object());
     personService->addPerson(person);
     res.result(http::status::created);
-    res.body() = "Person created";
+    res.body() = "{\"success\": \"Person created.\"}";
+    res.set(http::field::content_type, "application/json");
   } catch (const std::exception &e) {
     res.result(http::status::bad_request);
     res.body() = "Invalid JSON payload";
   }
 }
 
-void PersonController::getPersonsById(Context &ctx) {
+void PersonController::getPersonById(Context &ctx) {
   auto &res = ctx.getResponse();
 
   try {
@@ -58,5 +59,23 @@ void PersonController::getPersonsById(Context &ctx) {
     res.result(http::status::internal_server_error);
     res.body() = "{\"error\": \"Failed to serialize persons.\"}";
     res.set(http::field::content_type, "application/json");
+  }
+}
+
+void PersonController::deletePersonById(Context &ctx) {
+  auto &res = ctx.getResponse();
+
+  try {
+    unsigned int id = std::atoi(ctx.getParam("id").c_str());
+
+    if (personService->deletePersonById(id)) {
+      res.result(http::status::no_content);
+    } else {
+      res.result(http::status::not_found);
+      res.body() = "{\"error\": \"Person not found.\"}";
+      res.set(http::field::content_type, "application/json");
+    }
+  } catch (const std::exception &e) {
+    res.result(http::status::internal_server_error);
   }
 }
