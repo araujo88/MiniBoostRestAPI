@@ -2,8 +2,9 @@
 
 boost::json::object PersonSerializer::toJson(const Person &person) {
   boost::json::object obj;
-  obj["name"] = person.name;
-  obj["age"] = person.age;
+  obj["id"] = person.getId();
+  obj["name"] = person.getName();
+  obj["age"] = person.getAge();
   return obj;
 }
 

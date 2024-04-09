@@ -5,10 +5,15 @@
 #include <string>
 
 class Person {
-public:
+private:
+  static unsigned int num_instances;
+  unsigned int id;
   std::string name;
   unsigned int age;
 
-  Person() = default;
-  Person(std::string name, unsigned int age) : name(name), age(age) {}
+public:
+  Person(std::string name, unsigned int age);
+  unsigned int getId() const;
+  std::string getName() const;
+  unsigned int getAge() const;
 };
