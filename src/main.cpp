@@ -11,19 +11,14 @@ int main(void) {
     auto personService = std::make_shared<PersonService>();
     auto personController = std::make_shared<PersonController>(personService);
 
-    router->addRoute("/person", [personController](
-                                    const http::request<http::string_body> &req,
-                                    http::response<http::string_body> &res) {
-      if (req.method() == http::verb::get) {
-        personController->getPersons(req, res);
-      } else if (req.method() == http::verb::post) {
-        personController->createPerson(req, res);
-      } else {
-        res.result(http::status::method_not_allowed);
-        res.body() = "Method Not Allowed";
-        res.prepare_payload();
-      }
-    });
+    router->addRoute(http::verb::get, "/person",
+                     [personController](const auto &req, auto &res) {
+                       personController->getPersons(req, res);
+                     });
+    router->addRoute(http::verb::post, "/person",
+                     [personController](const auto &req, auto &res) {
+                       personController->createPerson(req, res);
+                     });
 
     std::cout << "Server starting on port " << server.getPort() << std::endl;
     server.run();
