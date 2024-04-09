@@ -1,15 +1,14 @@
 #pragma once
 
-#include <string>
-#include <boost/json.hpp>
 #include <boost/asio.hpp>
+#include <boost/json.hpp>
+#include <string>
 
-class Person
-{
+class Person {
 public:
-    std::string name;
-    int age;
+  std::string name;
+  int age;
 
-    Person() = default;
-    Person(std::string name, int age) : name(name), age(age) {}
+  Person() = default;
+  Person(std::string name, int age) : name(name), age(age) {}
 };

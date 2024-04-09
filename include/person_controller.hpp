@@ -9,9 +9,9 @@ namespace http = beast::http;   // from <boost/beast/http.hpp>
 namespace net = boost::asio;    // from <boost/asio.hpp>
 using tcp = net::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
 
-class PersonController
-{
+class PersonController {
 public:
-    void handleGet(http::response<http::string_body> &response);
-    void handlePost(const http::request<http::string_body> &request, http::response<http::string_body> &response);
+  void handleGet(http::response<http::string_body> &response);
+  void handlePost(const http::request<http::string_body> &request,
+                  http::response<http::string_body> &response);
 };

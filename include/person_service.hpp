@@ -1,21 +1,19 @@
 #pragma once
 
-#include <vector>
 #include "person.hpp"
+#include <vector>
 
-class IPersonService
-{
+class IPersonService {
 public:
-    virtual void addPerson(const Person &person) = 0;
-    virtual std::vector<Person> getAllPersons() = 0;
+  virtual void addPerson(const Person &person) = 0;
+  virtual std::vector<Person> getAllPersons() = 0;
 };
 
-class PersonService : public IPersonService
-{
+class PersonService : public IPersonService {
 private:
-    std::vector<Person> persons;
+  std::vector<Person> persons;
 
 public:
-    void addPerson(const Person &person);
-    std::vector<Person> getAllPersons();
+  void addPerson(const Person &person);
+  std::vector<Person> getAllPersons();
 };
