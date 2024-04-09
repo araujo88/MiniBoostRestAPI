@@ -37,29 +37,12 @@ void PersonController::createPerson(Context &ctx) {
 }
 
 void PersonController::getPersonsById(Context &ctx) {
-  auto &req = ctx.getRequest();
   auto &res = ctx.getResponse();
 
   try {
-    // Convert the target to a standard string for easier manipulation
-    std::string target = std::string(req.target());
-
-    // Assuming the target format is "/person/{id}"
-    std::size_t startPos =
-        target.find("/person/") + 8; // +8 to move past "/person/"
-    std::size_t endPos = target.find(
-        '/', startPos); // Find the next slash in case there's more to the path
-
-    // If there's no additional slash, endPos will be std::string::npos, and
-    // substr will work correctly by default
-    std::string idStr = target.substr(startPos, endPos - startPos);
-
-    // Convert the extracted part to an unsigned int
-    // Note: You might want to use a safer conversion method that can handle
-    // errors.
-    unsigned int id = std::atoi(idStr.c_str());
-
+    unsigned int id = std::atoi(ctx.getParam("id").c_str());
     auto person = personService->getPersonById(id);
+
     if (person) {
       std::string jsonString =
           boost::json::serialize(PersonSerializer::toJson(person.value()));
