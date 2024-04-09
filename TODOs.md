@@ -31,7 +31,7 @@
 ### Deployment
 
 - [ ] **Dockerization**: Containerize the application with Docker for easy deployment and scaling.
-- [ ] **CI/CD Pipeline**: Set up a CI/CD pipeline for automated testing and deployment.
+- [X] **CI/CD Pipeline**: Set up a CI/CD pipeline for automated testing and deployment.
 - [ ] **Environment Configuration**: Ensure configuration can be easily managed across different environments (development, testing, production).
 
 ### Documentation and Maintenance
@@ -43,7 +43,7 @@
 
 ### Community and Contributions
 
-- [ ] **Open Source License**: Choose an appropriate open source license.
+- [X] **Open Source License**: Choose an appropriate open source license.
 - [ ] **Contribution Guidelines**: Establish guidelines for contributors.
 - [ ] **Issue Templates**: Create GitHub issue templates for bug reports and feature requests.
 
@@ -53,4 +53,3 @@
 - [ ] **Third-party Integrations**: Implement OAuth and other integrations for extended functionality.
 - [ ] **Localization and Internationalization**: Prepare the application for multi-language support.
 
-This TODO list covers a broad range of tasks crucial for developing a robust, secure, and scalable web server application. Prioritize tasks based on your project's specific requirements and goals.
