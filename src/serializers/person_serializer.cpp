@@ -1,4 +1,4 @@
-#include "../include/person_serializer.hpp"
+#include "../include/serializers/person_serializer.hpp"
 
 boost::json::object PersonSerializer::toJson(const Person &person) {
   boost::json::object obj;

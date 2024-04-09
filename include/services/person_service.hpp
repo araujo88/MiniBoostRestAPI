@@ -1,6 +1,6 @@
 #pragma once
 
-#include "person.hpp"
+#include "../models/person.hpp"
 #include <vector>
 
 class IPersonService {

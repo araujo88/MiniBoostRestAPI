@@ -1,4 +1,4 @@
-#include "../include/person_controller.hpp"
+#include "../include/controllers/person_controller.hpp"
 
 void PersonController::getPersons(
     const http::request<http::string_body> &request,

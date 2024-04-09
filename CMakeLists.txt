@@ -3,7 +3,7 @@ project(MiniBoostRestAPI VERSION 1.0)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-file(GLOB SOURCES "src/*.cpp" )
+file(GLOB SOURCES "src/*.cpp" "src/*/*.cpp")
 
 # Generate an executable from specified sources
 add_executable(MiniBoostRestAPI ${SOURCES})

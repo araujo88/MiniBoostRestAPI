@@ -1,7 +1,7 @@
-#include "../include/person_controller.hpp"
-#include "../include/person_service.hpp"
+#include "../include/controllers/person_controller.hpp"
 #include "../include/router.hpp"
 #include "../include/server.hpp"
+#include "../include/services/person_service.hpp"
 #include <iostream>
 
 int main(void) {

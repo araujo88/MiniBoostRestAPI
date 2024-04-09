@@ -1,6 +1,6 @@
 #pragma once
 
-#include "person.hpp"
+#include "../models/person.hpp"
 #include <boost/asio.hpp>
 #include <boost/json.hpp>
 

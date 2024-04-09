@@ -1,7 +1,7 @@
 #pragma once
 
-#include "person_serializer.hpp"
-#include "person_service.hpp"
+#include "../serializers/person_serializer.hpp"
+#include "../services/person_service.hpp"
 #include <boost/asio.hpp>
 #include <boost/beast.hpp>
 #include <boost/json.hpp>
