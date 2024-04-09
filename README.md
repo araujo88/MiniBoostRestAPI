@@ -8,6 +8,8 @@ This project is a simple HTTP server application written in C++ that demonstrate
 - Uses Boost libraries for network and HTTP functionalities.
 - Demonstrates clean architecture, dependency injection, and SOLID principles.
 - Simple CMake setup for easy building and configuration.
+- e2e tests in Python.
+- Powerful router.
 
 ## Prerequisites
 
@@ -55,6 +57,7 @@ By default, the server listens on port 6969. You can interact with the server us
 
 - `GET /person`: Retrieves a list of all person entities.
 - `POST /person`: Creates a new person entity.
+- `GET /person/{id}`: Retrieve a person entity by id.
 
 ## License
 
