@@ -13,23 +13,21 @@ int main(void) {
 
     router->setPrefix("/v1");
 
-    router->addRoute(http::verb::get, "/person", [personController](auto &ctx) {
+    router->addRoute(GET, "/person", [personController](auto &ctx) {
       personController->getPersons(ctx);
     });
 
-    router->addRoute(
-        http::verb::post, "/person",
-        [personController](auto &ctx) { personController->createPerson(ctx); });
+    router->addRoute(POST, "/person", [personController](auto &ctx) {
+      personController->createPerson(ctx);
+    });
 
-    router->addRoute(http::verb::get, "/person/{id}",
-                     [personController](auto &ctx) {
-                       personController->getPersonById(ctx);
-                     });
+    router->addRoute(GET, "/person/{id}", [personController](auto &ctx) {
+      personController->getPersonById(ctx);
+    });
 
-    router->addRoute(http::verb::delete_, "/person/{id}",
-                     [personController](auto &ctx) {
-                       personController->deletePersonById(ctx);
-                     });
+    router->addRoute(DELETE, "/person/{id}", [personController](auto &ctx) {
+      personController->deletePersonById(ctx);
+    });
 
     std::cout << "Server starting on port " << server.getPort() << std::endl;
     server.run();
