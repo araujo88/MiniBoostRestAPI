@@ -7,8 +7,8 @@
 class Person {
 public:
   std::string name;
-  int age;
+  unsigned int age;
 
   Person() = default;
-  Person(std::string name, int age) : name(name), age(age) {}
+  Person(std::string name, unsigned int age) : name(name), age(age) {}
 };
