@@ -1,0 +1,15 @@
+cmake_minimum: 3.14
+project_name: cpp_rest_api_template
+version: 1.0
+cpp_standard: 20
+output_type: executable # Can be 'library' or 'executable'
+# library_type: static # Can be 'static' or 'shared'
+include_dirs:
+  - include
+source_patterns:
+  - src/*.cpp
+install: true # Optional
+testing: # Optional
+  enable_testing: true
+  dir: tests
+
