@@ -11,6 +11,7 @@ int main(void) {
     auto personService = std::make_shared<PersonService>();
     auto personController = std::make_shared<PersonController>(personService);
 
+    router->setPrefix("/v1");
     router->addRoute(http::verb::get, "/person",
                      [personController](const auto &req, auto &res) {
                        personController->getPersons(req, res);

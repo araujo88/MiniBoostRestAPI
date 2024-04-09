@@ -2,7 +2,7 @@
 
 void Router::addRoute(http::verb method, const std::string &path,
                       HandlerFunc handler) {
-  routes[{method, path}] = std::move(handler);
+  routes[{method, prefix + path}] = std::move(handler);
 }
 
 bool Router::route(const http::request<http::string_body> &req,
@@ -22,3 +22,5 @@ bool Router::route(const http::request<http::string_body> &req,
 
   return false; // Route not found
 }
+
+void Router::setPrefix(const std::string &prefix) { this->prefix = prefix; }
