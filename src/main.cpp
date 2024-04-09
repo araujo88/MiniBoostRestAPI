@@ -12,13 +12,18 @@ int main(void) {
     auto personController = std::make_shared<PersonController>(personService);
 
     router->setPrefix("/v1");
-    router->addRoute(http::verb::get, "/person",
-                     [personController](const auto &req, auto &res) {
-                       personController->getPersons(req, res);
-                     });
-    router->addRoute(http::verb::post, "/person",
-                     [personController](const auto &req, auto &res) {
-                       personController->createPerson(req, res);
+
+    router->addRoute(http::verb::get, "/person", [personController](auto &ctx) {
+      personController->getPersons(ctx);
+    });
+
+    router->addRoute(
+        http::verb::post, "/person",
+        [personController](auto &ctx) { personController->createPerson(ctx); });
+
+    router->addRoute(http::verb::get, "/person/{id}",
+                     [personController](auto &ctx) {
+                       personController->getPersonsById(ctx);
                      });
 
     std::cout << "Server starting on port " << server.getPort() << std::endl;

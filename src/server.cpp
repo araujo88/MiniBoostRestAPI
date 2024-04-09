@@ -3,19 +3,20 @@
 void Server::session(tcp::socket socket) {
   try {
     beast::flat_buffer buffer;
-    http::request<http::string_body> request;
-    http::read(socket, buffer, request);
-    http::response<http::string_body> response;
+    http::request<http::string_body> req;
+    http::read(socket, buffer, req);
+    http::response<http::string_body> res;
+    auto ctx = Context(req, res);
 
     // Delegate the routing to the Router instance
-    if (!router->route(request, response)) {
+    if (!router->route(ctx)) {
       // If no route matches, respond with Not Found
-      response.result(http::status::not_found);
-      response.body() = "Resource not found";
+      res.result(http::status::not_found);
+      res.body() = "Resource not found";
     }
-    response.prepare_payload();
+    res.prepare_payload();
 
-    http::write(socket, response);
+    http::write(socket, res);
   } catch (std::exception const &e) {
     std::cerr << "Session error: " << e.what() << std::endl;
   }

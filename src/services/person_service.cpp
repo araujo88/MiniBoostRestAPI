@@ -5,3 +5,11 @@ void PersonService::addPerson(const Person &person) {
 }
 
 std::vector<Person> PersonService::getAllPersons() { return persons; }
+
+std::optional<Person> PersonService::getPersonById(unsigned int id) {
+  for (auto &person : persons) {
+    if (person.getId() == id)
+      return person;
+  }
+  return std::nullopt;
+}
