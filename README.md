@@ -58,6 +58,7 @@ By default, the server listens on port 6969. You can interact with the server us
 - `GET /person`: Retrieves a list of all person entities.
 - `POST /person`: Creates a new person entity.
 - `GET /person/{id}`: Retrieve a person entity by id.
+- `DELETE /person/{id}`: Delete a person entity by id.
 
 ## License
 
