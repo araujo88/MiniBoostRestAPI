@@ -7,14 +7,13 @@ void Server::session(tcp::socket socket) {
     http::read(socket, buffer, request);
     http::response<http::string_body> response;
 
-    auto handlerIt = routeMap.find(request.target());
-    if (handlerIt != routeMap.end()) {
-      // Call the function handler directly
-      handlerIt->second(request, response);
-    } else {
+    // Delegate the routing to the Router instance
+    if (!router->route(request, response)) {
+      // If no route matches, respond with Not Found
       response.result(http::status::not_found);
-      response.body() = "Route not found";
+      response.body() = "Resource not found";
     }
+    response.prepare_payload();
 
     http::write(socket, response);
   } catch (std::exception const &e) {
@@ -23,7 +22,6 @@ void Server::session(tcp::socket socket) {
 }
 
 void Server::run() {
-  net::io_context io_context{1};
   tcp::acceptor acceptor{
       io_context, {tcp::v4(), static_cast<boost::asio::ip::port_type>(port)}};
   for (;;) {
@@ -31,14 +29,6 @@ void Server::run() {
     acceptor.accept(socket);
     std::thread(&Server::session, this, std::move(socket)).detach();
   }
-}
-
-void Server::addRoute(
-    const std::string &route,
-    std::function<void(const http::request<http::string_body> &,
-                       http::response<http::string_body> &)>
-        handler) {
-  routeMap[route] = handler;
 }
 
 short Server::getPort() { return port; }
