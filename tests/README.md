@@ -14,7 +14,7 @@ Before running the tests, ensure you have the following installed:
 You can install the necessary Python packages by running:
 
 ```sh
-pip -r requirements.txt
+pip install -r requirements.txt
 ```
 
 Ensure that the MiniBoostRestAPI server is running and accessible at the expected address (default: `http://localhost:6969`).
